@@ -1,0 +1,48 @@
+﻿@model trashminingredux.Models.RegisterModels
+
+@{
+    ViewBag.Title = "Add Data";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Input Data</h2>
+<script src="~/Scripts/jquery-1.7.1.intellisense.js"></script>
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+@if(@ViewBag.result == "1")
+      {
+<script type="text/javascript">
+   
+    $(document).ready(function () {
+
+            alert("Data saved");
+    });
+         
+
+</script>
+      }
+@using (Html.BeginForm(FormMethod.Post))
+{
+   @Html.ValidationSummary(true)
+ 
+    @Html.Label("User Id")
+    <input name="Uid" type="text" />
+
+        @Html.Label("x-Position")
+    <input name="xpos" type="text" />
+
+    @Html.Label("y-position")
+    <input name="ypos" type="text" />
+    
+    @Html.Label("Orientation")
+    <input name="orientation" type="text" />
+  
+    @Html.Label("Type")
+    <input name="type" type="text" />
+    
+    @Html.Label("TimeStamp")
+    <input name="timestamp" type="datetime" />
+    <div>
+        <input type="submit" value="Submit" />
+    </div>
+}
