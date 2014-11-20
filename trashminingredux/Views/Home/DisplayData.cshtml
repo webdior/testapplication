@@ -1,0 +1,46 @@
+﻿@model trashminingredux.Models.RegisterModels
+
+@{
+    ViewBag.Title = "DisplayData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.7.1.intellisense.js"></script>
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+
+
+<h2>DisplayData</h2>
+<script type="text/javascript" >
+    $(document).ready(function () {
+
+        $.getJSON('/Home/listall/', function (data) {
+           
+            var items = '<tr><th>Id</th><th>x-position</th><th>y-position</th><th>Orientation</th><th>Type</th><th>Time</th></tr>';
+            $.each(data, function (i, detail) {
+             //   alert(detail.datax);
+               // var k = detail.datax;
+         
+             //   alert(detail.uid + detail.xpos + detail.ypos + detail.type, detail.orientation, detail.timestamp );
+                items += "<tr><td id='valid'>" + detail.uid + "</td><td id='valid'><td id='valid'>" + detail.xpos + "</td>" + detail.ypos + "</td><td id='valid'>" + detail.type + "</td><td id='valid'>" + detail.orientation + "</td><td id='valid'>" + detail.timestamp + "</td></tr>";
+               
+            });
+
+
+            $('#listul').html(items);
+
+        });
+        
+
+    });
+
+</script>
+
+<fieldset>
+    <div><table id="listul"> </table> </div>
+
+   
+
+
+
+</fieldset>

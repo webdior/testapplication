@@ -9,39 +9,86 @@
 <script src="~/Scripts/jquery-1.7.1.intellisense.js"></script>
 <script src="~/Scripts/jquery-1.7.1.js"></script>
 <script src="~/Scripts/jquery-1.7.1.min.js"></script>
-@if(@ViewBag.result == "1")
-      {
-<script type="text/javascript">
-   
-    $(document).ready(function () {
 
-            alert("Data saved");
-    });
+<script type="text/javascript">
+    
+           
+    //$(document).ready(function () {
+
+    //    $('#btn_submit').click(function () {
+    //        var uid = $("#userid").val();
+    //        var xpos = $("#xpos").val();
+    //        var ypos = $("#ypos").val();
+    //        var orientation = $("#orientation").val();
+    //        var type = $("#type").val();
+
+    //        var requestData = {
+    //            UserId: uid,
+    //           xposition: xpos,
+    //            yposition: ypos,
+    //            orientation: orientation,
+    //            Type: type
+    //        };
+    //        $.ajax({
+               
+    //            url: '/HomeController/Index2View',
+    //            type: 'POST',
+    //            data: JSON.stringify(requestData),
+    //            dataType: 'json',
+    //            contentType: 'application/json; charset=utf-8',
+    //            error: function (xhr) {
+    //                alert('Error: ' + xhr.statusText);
+    //            },
+    //            success: function (result) {
+    //               alert ("Data saved!")
+    //            },
+    //            async: true,
+    //            processData: false
+    //        });
+
+    //    });
+
+
+          
+    //});
          
 
 </script>
-      }
+@if (ViewBag.result == "1")
+{
+    <script type="text/javascript" >
+        $(document).ready(function () {
+
+            alert("Data saved")
+
+        });
+
+
+    </script>
+}
 @using (Html.BeginForm(FormMethod.Post))
 {
    @Html.ValidationSummary(true)
  
     @Html.Label("User Id")
-    <input name="Uid" type="text" />
+    <input name="Uid" id="userid" type="text" />
 
         @Html.Label("x-Position")
-    <input name="xpos" type="text" />
+    <input name="xpos" id="xpos" type="text" />
 
     @Html.Label("y-position")
-    <input name="ypos" type="text" />
-    
+    <input name="ypos" type="text" id="ypos" />
+
     @Html.Label("Orientation")
-    <input name="orientation" type="text" />
-  
+    <input name="orientation" type="text" id="orientation" />
+
     @Html.Label("Type")
-    <input name="type" type="text" />
-    
-    
+    <input name="type" type="text" id="type" />
+
+
     <div>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" id="btn_submit" />
     </div>
 }
+
+

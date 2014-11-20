@@ -8,6 +8,7 @@ using RestAPI.Controllers.DAL;
 using System.Collections;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System.Data;
 
 using System.Web.Script.Serialization;
 
@@ -44,25 +45,29 @@ namespace RestAPI.Controllers
         //}
         private HttpResponseMessage response;
 
-        //[HttpGet]
-        //public HttpResponseMessage GetJobType()
-        //{
-        //   // HttpResponseMessage response;
+        [HttpGet]
+        public HttpResponseMessage GetIO()
+        {
+            // HttpResponseMessage response;
+            try
+            {
+                DataSet interestResponse = new DataSet();
+                interestResponse = new userDAL().GetIO();
 
-        //    try
-        //    {
-        //        var interestResponse = new userDAL().GetJobType();
-        //        if (interestResponse != null)
-        //            response = Request.CreateResponse<string>(HttpStatusCode.OK, interestResponse);
-        //        else
-        //            response = new HttpResponseMessage(HttpStatusCode.NotFound);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
-        //    }
-        //    return response;
-        //}
+
+                //var interestResponse = new userDAL().GetIO(); 
+                if (interestResponse != null)
+                    response = Request.CreateResponse<DataSet>(HttpStatusCode.OK, interestResponse);
+                    
+                else
+                    response = new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+            catch (Exception ex)
+            {
+                // response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
       public  HttpContent k;
        [HttpPost]
 
@@ -71,9 +76,7 @@ namespace RestAPI.Controllers
             //"{\r\n  \"UserId\""
             try
             {
-               
-
-                if (paramList.Count > 0)
+              if (paramList.Count > 0)
                 {
                     string[] data = paramList[0].ToString().Split('"');
            

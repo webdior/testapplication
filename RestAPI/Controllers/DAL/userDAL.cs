@@ -4,16 +4,28 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using RestAPI.Models;
-
+using System.Data;
 namespace RestAPI.Controllers.DAL
 {
     public class userDAL
     {
 
-        public string GetJobType()
+        public DataSet GetIO()
         {
-
-            return "kk";
+            using (SqlConnection mycon = new SqlConnection(System.Web.Configuration.WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
+            {
+                mycon.Open();
+                SqlCommand cmd = new SqlCommand();
+                DataSet ds = new DataSet();
+                cmd.Connection = mycon;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandText = "displayIO";
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                return ds;
+                         
+            }
+           
         }
         public string add(string  uids , string xpos, string ypos, string orientation, string type, string timestamp)
         {
