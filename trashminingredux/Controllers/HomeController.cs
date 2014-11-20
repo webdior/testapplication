@@ -41,27 +41,19 @@ namespace trashminingredux.Controllers
         //    return View();
         //}
        [HttpPost]
-        public ActionResult Index2View(Models.RegisterModels rmodels, string Uid, string xpos, string ypos, string orientation, string type, string timestamp)
+        public ActionResult Index2View(Models.RegisterModels rmodels, string Uid, string xpos, string ypos, string orientation, string type)
         {
-          
 
-            if (Request.Form.Count > 0)
+            string timestamp = Convert.ToString(DateTime.Now);
+           if (Request.Form.Count > 0)
             {
 
-              //  Uid = Convert.ToInt32(Request.Form["Uid"]);
             string a = rmodels.adddata(Uid,xpos,ypos,orientation,type,timestamp);
             ViewBag.result = a;
-              // Your Logic here with posted data
+         
             }
             return View();
-            //if (ModelState.IsValid)
-            //{
-            
-            //    string a = rmodels.adddata();
-
-            //    ViewBag.result = a;
-            //}
-            //return View("Index2View",rmodels);
+          
 
         }
         [HttpGet]

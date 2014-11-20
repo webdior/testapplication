@@ -33,7 +33,7 @@ namespace trashminingredux.Models
         {
 
             ArrayList paramList = new ArrayList();
-            Product product = new Product {UserId = id  ,  xpos = xpos, ypos= ypos, orientation = orientation, type = type, timestamp = timestamp }; //1, Name = "Book", Price = 500, Category = "Soap" };
+            Product product = new Product {UserId = id  ,  xpos = xpos, ypos= ypos, orientation = orientation, type = type, timestamp = timestamp }; 
           
             paramList.Add(product);
          
@@ -41,12 +41,9 @@ namespace trashminingredux.Models
             string uids = Convert.ToString(id);
             
             HttpClient httpClient = new HttpClient();
-            // httpClient.BaseAddress = new Uri();
+      
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-         //   HttpResponseMessage response;
-           
-         //response = httpClient.PostAsync("http://localhost:2076/" + "api/Values/add/" , new StringContent(uids)).Result;
-
+        
             HttpResponseMessage response = httpClient.PostAsJsonAsync("http://localhost:2076/" + "api/Values/add/", paramList).Result;
 
             string valuetest = response.Content.ReadAsAsync<string>().Result;
